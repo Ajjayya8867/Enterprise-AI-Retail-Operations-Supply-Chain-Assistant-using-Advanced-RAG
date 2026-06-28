@@ -1,0 +1,30 @@
+INCIDENT REPORT: DAMAGED CARGO AT RECEIVING DOCK
+Report Reference: IR-2026-089
+Date of Incident: June 26, 2026
+Location: Warehouse-B (Receiving Dock 4)
+Inspector: Marcus Vance, Shift Lead
+
+1. SHIPMENT DETAILS
+- Purchase Order: PO-2026-044
+- Supplier: ScanTech Solutions
+- Carrier: SwiftCargo
+- Date of Arrival: June 26, 2026 (08:45 AM)
+- Total Pallets: 6 Pallets
+
+2. DESCRIPTION OF DAMAGE
+During offloading of the cargo, Pallet #3 (containing ScanTech Standard Handheld Label Printers, SKU-671-9P) was observed to be heavily tilted. Upon closer inspection:
+- The outer shrink-wrap was torn, and the structural integrity of the outer cardboard box was compromised.
+- Water damage was visible on the bottom layer of boxes, indicating exposure during transit.
+- 12 units of SKU-671-9P had crushed chassis, and 8 units failed to power on due to internal moisture damage.
+- Total damaged units: 20 units.
+- Total estimated value of damages: $2,400.00.
+
+3. CAUSE ANALYSIS
+The carrier, SwiftCargo, utilized a trailer with a leaking roof panel. Heavy rain during transit on Interstate 90 resulted in water ingress. Furthermore, the pallet was improperly secured with insufficient strapping, leading to shifts and crushing during braking.
+
+4. ACTIONS TAKEN & SLA REMEDIES
+- Receiving lead rejected the 20 damaged units.
+- The remaining 5 pallets (comprising 180 units) were successfully scanned into inventory at Warehouse-B.
+- Form 802-Damages was signed by the SwiftCargo driver, acknowledging the transit moisture.
+- A damage return claim has been filed with ScanTech Solutions. Under section 3.3 of the SLA, ScanTech must dispatch replacement units within 5 business days.
+- A SwiftCargo handling penalty fee of $150.00 has been logged.

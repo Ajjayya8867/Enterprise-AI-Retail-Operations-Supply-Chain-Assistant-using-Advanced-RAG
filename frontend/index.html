@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Retail AI: Supply Chain & RAG Control Center</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body class="dark-theme">
+    
+    <!-- LOGIN PAGE VIEW -->
+    <div id="loginScreen" class="login-screen-overlay">
+        <div class="login-box">
+            <div class="login-header">
+                <div class="login-logo-icon"><i class="fa-solid fa-microchip"></i></div>
+                <h2>NEXUS RETAIL AI</h2>
+                <p>Enterprise Supply Chain & Operations Portal</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="usernameInput">Username</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="usernameInput" placeholder="Enter username" required autocomplete="username">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="passwordInput">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="passwordInput" placeholder="Enter password" required autocomplete="current-password">
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" id="loginSubmitBtn">
+                    <span>Sign In</span> <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                </button>
+            </form>
+            
+            <div class="demo-logins">
+                <p class="demo-title">Or sign in with a demo account (Password: <code>password123</code>):</p>
+                <div class="demo-btn-grid">
+                    <button class="btn btn-secondary btn-xs demo-user-btn" data-username="admin">Admin</button>
+                    <button class="btn btn-secondary btn-xs demo-user-btn" data-username="store_manager">Store Mgr</button>
+                    <button class="btn btn-secondary btn-xs demo-user-btn" data-username="analyst">Analyst</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER (Hidden until login) -->
+    <div class="app-container" id="appMainContainer" style="display: none;">
+        
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="app-sidebar">
+            <div class="sidebar-header">
+                <div class="logo-area">
+                    <div class="logo-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="logo-text">
+                        <h1>NEXUS RETAIL AI</h1>
+                        <span class="sub-title">Operations Console</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- User Status Badge -->
+            <div class="user-badge" id="userSidebarBadge">
+                <div class="user-avatar"><i class="fa-solid fa-circle-user"></i></div>
+                <div class="user-details">
+                    <div class="user-name" id="userBadgeName">Guest Manager</div>
+                    <div class="user-role" id="userBadgeRole">Store Manager</div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation Menu -->
+            <nav class="sidebar-nav">
+                <button class="nav-tab active" data-view="chat-view">
+                    <i class="fa-solid fa-robot"></i>
+                    <span>AI Assistant</span>
+                </button>
+                <button class="nav-tab" data-view="products-view">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>Product Search</span>
+                </button>
+                <button class="nav-tab" data-view="inventory-view">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Inventory Metrics</span>
+                </button>
+                <button class="nav-tab" data-view="knowledge-view">
+                    <i class="fa-solid fa-folder-open"></i>
+                    <span>Knowledge Base</span>
+                </button>
+                <button class="nav-tab" data-view="ingestion-view">
+                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                    <span>Ingestion Hub</span>
+                </button>
+                <button class="nav-tab" data-view="admin-view">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Admin Control</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="engine-indicator">
+                    <span class="status-dot green"></span>
+                    <span class="status-lbl" id="engineStatusText">RAG Online</span>
+                </div>
+                <button id="configKeyBtn" class="btn btn-secondary btn-sm btn-block">
+                    <i class="fa-solid fa-key"></i> Configure API Key
+                </button>
+                <button id="logoutBtn" class="btn btn-secondary btn-sm btn-block logout-btn">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN LAYOUT AREA -->
+        <div class="main-content-wrapper">
+            <!-- HEADER -->
+            <header class="app-header">
+                <h2 id="currentViewTitle">AI Retail Assistant</h2>
+                <div class="header-actions">
+                    <button id="themeToggleBtn" class="btn btn-icon">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- CONTROLLER VIEW PANELS -->
+            <main class="app-main-layout">
+                
+                <!-- VIEW 1: CHAT ASSISTANT & RAG INSPECTOR -->
+                <div class="view-panel active" id="view-chat-view">
+                    <div class="assistant-layout">
+                        <!-- Left: Chat Interface -->
+                        <div class="chat-section-container">
+                            <div class="chat-history" id="chatHistory">
+                                <div class="message system">
+                                    <div class="message-content">
+                                        <p>Welcome to **Nexus Operations Control**. I can query inventory, track shipments, and analyze supplier SLA documents. Ask me anything about stock, deliveries, or contract compliance details.</p>
+                                        <div class="suggested-queries">
+                                            <button class="suggested-btn">Which items are below reorder threshold?</button>
+                                            <button class="suggested-btn">Tell me about vendor SLA penalties for late deliveries.</button>
+                                            <button class="suggested-btn">Show all delayed purchase orders for Supplier XYZ.</button>
+                                            <button class="suggested-btn">Generate a replenishment checklist for Store 210.</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form class="chat-input-form" id="chatInputForm">
+                                <input type="text" id="chatInput" placeholder="Ask a policy query, inventory lookup, or compile a checklist..." required autocomplete="off">
+                                <button type="submit" class="btn btn-primary" id="sendBtn">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Right: RAG Inspector Sidebar Drawer -->
+                        <div class="rag-inspect-column">
+                            <div class="inspect-header">
+                                <h3><i class="fa-solid fa-code-branch"></i> Advanced RAG Inspect</h3>
+                            </div>
+                            <div class="rag-trace-panel" id="ragTracePanel">
+                                <div class="trace-tabs">
+                                    <button class="trace-tab active" data-tab="expansion">Expansion</button>
+                                    <button class="trace-tab" data-tab="sparse">Sparse (BM25)</button>
+                                    <button class="trace-tab" data-tab="dense">Dense (Embed)</button>
+                                    <button class="trace-tab" data-tab="rrf">RRF Rank</button>
+                                </div>
+                                
+                                <div class="trace-tab-content active" id="tab-expansion">
+                                    <h4>Query Expansion Variations</h4>
+                                    <ul class="expanded-queries-list" id="expandedQueriesList">
+                                        <li class="empty-trace">Submit a query to inspect variations.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="trace-tab-content" id="tab-sparse">
+                                    <h4>Lexical Hits (BM25 / TF-IDF)</h4>
+                                    <div class="table-container">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Chunk Text</th>
+                                                    <th>Source</th>
+                                                    <th>Score</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="sparseResultsBody">
+                                                <tr><td colspan="3" class="empty-trace">No sparse search records.</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="trace-tab-content" id="tab-dense">
+                                    <h4>Semantic Hits (Embedding)</h4>
+                                    <div class="table-container">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Chunk Text</th>
+                                                    <th>Source</th>
+                                                    <th>Similarity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="denseResultsBody">
+                                                <tr><td colspan="3" class="empty-trace">No dense search records.</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="trace-tab-content" id="tab-rrf">
+                                    <h4>Reciprocal Rank Fusion Weights</h4>
+                                    <div class="table-container">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>RRF Score</th>
+                                                    <th>Chunk Text Snippet</th>
+                                                    <th>Source</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="rrfResultsBody">
+                                                <tr><td colspan="3" class="empty-trace">No RRF rankings.</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 2: PRODUCT SEARCH DIRECTORY -->
+                <div class="view-panel" id="view-products-view">
+                    <div class="panel-inner-container">
+                        <div class="filter-bar">
+                            <div class="search-input-wrapper">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="productSearchInput" placeholder="Search by Product Name, SKU, or Category...">
+                            </div>
+                            <button id="productSearchBtn" class="btn btn-primary"><i class="fa-solid fa-search"></i> Search</button>
+                        </div>
+                        
+                        <div class="grid-table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>SKU</th>
+                                        <th>Product Name</th>
+                                        <th>Category</th>
+                                        <th>Unit Price</th>
+                                        <th>Whse Stock</th>
+                                        <th>Store Stock</th>
+                                        <th>Supplier Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="productResultsBody">
+                                    <tr>
+                                        <td colspan="7" class="empty-table-state">Use search bar above to query products database.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 3: INVENTORY METRICS & CHARTS -->
+                <div class="view-panel" id="view-inventory-view">
+                    <div class="panel-inner-container scrolling-container">
+                        <!-- KPI Row -->
+                        <div class="kpi-grid">
+                            <div class="kpi-card">
+                                <div class="kpi-info">
+                                    <span class="kpi-title">Total Inventory Units</span>
+                                    <span class="kpi-value" id="kpiTotalInventory">-</span>
+                                </div>
+                                <div class="kpi-icon blue"><i class="fa-solid fa-boxes-stacked"></i></div>
+                            </div>
+                            
+                            <div class="kpi-card" id="kpiLowStockCard">
+                                <div class="kpi-info">
+                                    <span class="kpi-title">Low Stock SKUs</span>
+                                    <span class="kpi-value" id="kpiLowStock">-</span>
+                                </div>
+                                <div class="kpi-icon red"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                            </div>
+                            
+                            <div class="kpi-card">
+                                <div class="kpi-info">
+                                    <span class="kpi-title">Active / Delayed POs</span>
+                                    <span class="kpi-value" id="kpiShipments">-</span>
+                                </div>
+                                <div class="kpi-icon purple"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                            </div>
+                            
+                            <div class="kpi-card">
+                                <div class="kpi-info">
+                                    <span class="kpi-title">OTIF Delivery Rate</span>
+                                    <span class="kpi-value" id="kpiOtif">-</span>
+                                </div>
+                                <div class="kpi-icon green"><i class="fa-solid fa-calendar-check"></i></div>
+                            </div>
+                        </div>
+
+                        <!-- Charts Row -->
+                        <div class="charts-grid">
+                            <div class="chart-card">
+                                <h3>Inventory Level vs Reorder Level</h3>
+                                <div class="chart-wrapper">
+                                    <canvas id="inventoryChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="chart-card">
+                                <h3>Shipment Status Distribution</h3>
+                                <div class="chart-wrapper">
+                                    <canvas id="shippingChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Low Stock Action Table -->
+                        <div class="dashboard-table-card">
+                            <h3><i class="fa-solid fa-circle-exclamation red"></i> Critical Low Stock Status Alerts</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>SKU</th>
+                                            <th>Product Name</th>
+                                            <th>Location Name</th>
+                                            <th>Stock</th>
+                                            <th>Reorder Level</th>
+                                            <th>Supplier Name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="lowStockTableBody">
+                                        <tr><td colspan="6" class="empty-trace">No alerts found.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 4: KNOWLEDGE BASE / DOCUMENT MANAGER -->
+                <div class="view-panel" id="view-knowledge-view">
+                    <div class="knowledge-view-layout">
+                        <!-- Left sidebar doc control -->
+                        <div class="knowledge-sidebar">
+                            <div class="panel-header">
+                                <h2><i class="fa-solid fa-cloud-arrow-up"></i> Upload Document</h2>
+                            </div>
+                            <div class="upload-zone" id="dropzone">
+                                <input type="file" id="fileInput" multiple accept=".txt,.csv,.pdf,.docx,.xlsx" style="display: none;">
+                                <div class="upload-prompt">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <p class="primary-prompt">Drag & drop files here</p>
+                                    <p class="secondary-prompt">Supports PDF, CSV, TXT, DOCX, XLSX</p>
+                                    <button class="btn btn-primary btn-sm" onclick="document.getElementById('fileInput').click()">Browse Files</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Search & Metadata Filters -->
+                            <div class="metadata-filters-card">
+                                <h3><i class="fa-solid fa-filter"></i> Search RAG Metadata Filters</h3>
+                                <div class="form-group">
+                                    <label for="filterDocType">Document Type</label>
+                                    <select id="filterDocType" class="form-select">
+                                        <option value="">All Types</option>
+                                        <option value="pdf">PDF</option>
+                                        <option value="txt">TXT</option>
+                                        <option value="csv">CSV</option>
+                                        <option value="docx">DOCX</option>
+                                        <option value="xlsx">XLSX</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="filterSource">Source File</label>
+                                    <select id="filterSource" class="form-select">
+                                        <option value="">All Sources</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right doc listing -->
+                        <div class="knowledge-main">
+                            <div class="document-list-container">
+                                <h3>Active Files Catalog (<span id="docCountBadge">0 Files</span>)</h3>
+                                <div class="document-list" id="documentList">
+                                    <div class="empty-state">
+                                        <i class="fa-solid fa-file-invoice"></i>
+                                        <p>No documents uploaded yet.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW: INGESTION CONTROL HUB -->
+                <div class="view-panel" id="view-ingestion-view">
+                    <div class="panel-inner-container scrolling-container">
+                        <div class="ingestion-header-area">
+                            <h3><i class="fa-solid fa-cloud-arrow-down"></i> Data Ingestion Center</h3>
+                            <p>Ingest real-time supply chain files, connect external APIs to update SQL inventory tables, and load public open source RAG datasets.</p>
+                        </div>
+
+                        <div class="ingestion-grid-layout">
+                            <!-- Card 1: API Ingestion Panel -->
+                            <div class="ingest-card">
+                                <div class="card-header">
+                                    <h4><i class="fa-solid fa-link"></i> REST API Ingest</h4>
+                                    <span class="badge blue">SQL Table & RAG Mirror</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="apiPresetSelect">Select API Preset</label>
+                                        <select id="apiPresetSelect" class="form-select">
+                                            <option value="">-- Choose a Preset --</option>
+                                        </select>
+                                    </div>
+                                    <form id="apiIngestForm">
+                                        <div class="form-group">
+                                            <label for="apiIngestUrl">API Endpoint URL</label>
+                                            <input type="url" id="apiIngestUrl" class="form-input" placeholder="https://api.example.com/data" required>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-half">
+                                                <label for="apiTargetTable">Target Database Table</label>
+                                                <select id="apiTargetTable" class="form-select" required>
+                                                    <option value="products">Products Table</option>
+                                                    <option value="shipments">Shipments Table</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-half">
+                                                <label for="apiAuthHeader">Auth Token (Optional)</label>
+                                                <input type="text" id="apiAuthHeader" class="form-input" placeholder="Bearer key...">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="apiMappingText">JSON Property Mapping (Optional Key/Val)</label>
+                                            <textarea id="apiMappingText" class="form-textarea" rows="3" placeholder='{"sku": "id", "name": "title", "price": "price"}'></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block" id="apiIngestSubmitBtn">
+                                            <span>Fetch & Ingest API</span> <i class="fa-solid fa-play"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Card 2: Open Source Dataset Loader -->
+                            <div class="ingest-card">
+                                <div class="card-header">
+                                    <h4><i class="fa-solid fa-database"></i> Open Source Datasets</h4>
+                                    <span class="badge purple">CSV/JSON Vector Index</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="opensourcePresetSelect">Select Dataset Preset</label>
+                                        <select id="opensourcePresetSelect" class="form-select">
+                                            <option value="">-- Choose a Preset --</option>
+                                        </select>
+                                    </div>
+                                    <form id="opensourceIngestForm">
+                                        <div class="form-group">
+                                            <label for="opensourceUrl">Dataset Public URL</label>
+                                            <input type="url" id="opensourceUrl" class="form-input" placeholder="https://raw.githubusercontent.com/.../dataset.csv" required>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-half">
+                                                <label for="opensourceFilename">Target Filename</label>
+                                                <input type="text" id="opensourceFilename" class="form-input" placeholder="walmart_catalog.csv" required>
+                                            </div>
+                                            <div class="form-group col-half">
+                                                <label for="opensourceTitle">Dataset Title</label>
+                                                <input type="text" id="opensourceTitle" class="form-input" placeholder="Walmart Store Policy Catalog">
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block" id="opensourceSubmitBtn">
+                                            <span>Download & Index Dataset</span> <i class="fa-solid fa-download"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Detailed PDF / Document Uploader info -->
+                        <div class="dashboard-table-card border-glow" style="margin-top: var(--spacing-lg);">
+                            <div class="card-header flex-header">
+                                <h3><i class="fa-solid fa-file-pdf red"></i> PDF & Policy Document Ingest</h3>
+                                <button class="btn btn-secondary btn-xs" id="downloadSamplePdfBtn">
+                                    <i class="fa-solid fa-file-arrow-down"></i> Load Demo PDF SOP
+                                </button>
+                            </div>
+                            <div class="pdf-upload-info-area">
+                                <p>To index unstructured PDF policies (e.g. <code>q3_sla_review.pdf</code> or store operating guidelines), navigate to the <strong>Knowledge Base</strong> tab. Once loaded, the engine splits files using <strong>Intelligent Chunking</strong> (Parent-Child recursion), maps pages, and makes them retrievable by the RAG search router.</p>
+                            </div>
+                        </div>
+
+                        <!-- Ingestion Logs Feed -->
+                        <div class="dashboard-table-card" style="margin-top: var(--spacing-lg);">
+                            <h3><i class="fa-solid fa-list-check"></i> Ingestion Log Status Feed</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Source Type</th>
+                                            <th>Resource / URL</th>
+                                            <th>Target Action</th>
+                                            <th>Records Ingested</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ingestionLogsBody">
+                                        <tr><td colspan="6" class="empty-trace">No ingestion tasks run in this session.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIEW 5: ADMIN SECURITY LOGS -->
+                <div class="view-panel" id="view-admin-view">
+                    <!-- Access Denied Splash Screen (Toggled in app.js based on role) -->
+                    <div id="adminAccessDenied" class="access-denied-splash">
+                        <i class="fa-solid fa-lock"></i>
+                        <h2>ACCESS RESTRICTED</h2>
+                        <p>Only account users with Administrator privileges can access the Security Audit Logs Console.</p>
+                        <p class="user-role-notice">Your role: <strong id="restrictedUserRole">Guest</strong></p>
+                    </div>
+                    
+                    <div id="adminAccessGranted" class="panel-inner-container" style="display: none;">
+                        <div class="admin-panel-header">
+                            <h3><i class="fa-solid fa-user-shield"></i> Security Audit Logs</h3>
+                            <p>Tracks RAG execution queries, text-to-SQL statements, execution latencies, and transaction statuses.</p>
+                        </div>
+                        <div class="grid-table-container">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Timestamp</th>
+                                        <th>Username</th>
+                                        <th>Role</th>
+                                        <th>User Query</th>
+                                        <th>Pipeline Intent</th>
+                                        <th>Executed SQL</th>
+                                        <th>Latency (ms)</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="auditLogsBody">
+                                    <tr>
+                                        <td colspan="8" class="empty-table-state">Loading system log audits...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- API KEY CONFIGURATION MODAL -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-key"></i> Gemini API Key Configuration</h3>
+                <button class="modal-close" id="modalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Nexus Retail AI operates locally with fallback schemas. Connect your <strong>Google Gemini API Key</strong> to activate advanced generative capabilities and text-to-SQL intent routing.</p>
+                <div class="form-group">
+                    <label for="apiKeyInput">Gemini API Key</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="apiKeyInput" placeholder="AIzaSy...">
+                        <button type="button" class="password-toggle" id="apiKeyToggle">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="clearKeyBtn">Clear Key</button>
+                <button class="btn btn-primary" id="saveKeyBtn">Save Key</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="app.js?v=4"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+SKU,Product Name,Category,Warehouse Location,Current Stock,Reorder Threshold,Unit Price ($),Supplier Name,Status
+SKU-990-2A,UltraHD Wireless Barcode Scanner,Electronics,Warehouse-A,12,30,89.99,ScanTech Solutions,LOW STOCK
+SKU-104-5B,Eco-Friendly Cardboard Shipping Boxes (Medium),Packaging,Warehouse-B,1200,500,0.45,PackRight Ind.,In Stock
+SKU-205-9C,Thermal Receipt Paper Rolls (50-pack),Supplies,Warehouse-A,45,100,24.99,PaperCo Ltd.,LOW STOCK
+SKU-482-1F,Ergonomic Steel Warehouse Utility Cart,Equipment,Warehouse-C,4,5,189.50,IronClad Products,LOW STOCK
+SKU-302-8D,High-Performance Heavy Duty Hand Pallet Jack,Equipment,Warehouse-C,15,8,349.99,IronClad Products,In Stock
+SKU-817-4K,Industrial Grade LED Aisle Flood Light,Electrical,Warehouse-A,8,15,45.00,VoltBright Corp,LOW STOCK
+SKU-112-7G,RFID Sticky Smart Labels (Roll of 1000),Technology,Warehouse-B,150,200,75.00,TraceTags Inc.,LOW STOCK
+SKU-554-3M,Heavy-Duty Anti-Fatigue Rubber Aisle Mat,Safety,Warehouse-A,22,10,55.00,SafeWalk Materials,In Stock
+SKU-671-9P,Standard Handheld Label Printer,Technology,Warehouse-B,35,30,120.00,PrintForce Systems,In Stock
+SKU-772-2Q,Reflective Safety Vests (Pack of 10),Safety,Warehouse-C,50,20,39.99,SafeWalk Materials,In Stock

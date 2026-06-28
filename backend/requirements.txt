@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+numpy
+scikit-learn
+pypdf
+python-multipart
+requests
+sqlalchemy
+pyjwt
+passlib[bcrypt]
+python-docx
+openpyxl

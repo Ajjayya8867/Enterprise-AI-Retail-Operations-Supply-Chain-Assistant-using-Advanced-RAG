@@ -1,0 +1,11 @@
+Purchase Order,SKU,Quantity,Carrier,Destination,Ship Date,Estimated Delivery,Actual Delivery,Status,Notes
+PO-2026-001,SKU-990-2A,50,SwiftCargo,Warehouse-A,2026-06-18,2026-06-23,2026-06-22,Delivered,Completed on time. OTIF met.
+PO-2026-002,SKU-205-9C,200,FedEx Freight,Warehouse-A,2026-06-20,2026-06-23,,Delayed,Stuck at Chicago transit hub due to weather. Est delay: 3 days.
+PO-2026-003,SKU-482-1F,10,BlueStreak Logistics,Warehouse-C,2026-06-22,2026-07-06,,In Transit,On schedule.
+PO-2026-004,SKU-112-7G,500,SwiftCargo,Warehouse-B,2026-06-24,2026-06-28,,In Transit,Approaching warehouse. Expected on time.
+PO-2026-005,SKU-817-4K,30,FedEx Freight,Warehouse-A,2026-06-19,2026-06-25,,Delayed,Custom customs inspection delayed clearance. Est delay: 4 days.
+PO-2026-006,SKU-104-5B,1000,DHL Express,Warehouse-B,2026-06-21,2026-06-28,,In Transit,On schedule.
+PO-2026-007,SKU-302-8D,6,BlueStreak Logistics,Warehouse-C,2026-06-15,2026-06-29,2026-06-28,Delivered,Completed on time.
+PO-2026-008,SKU-205-9C,150,SwiftCargo,Warehouse-A,2026-06-25,2026-06-28,,In Transit,On schedule.
+PO-2026-009,SKU-990-2A,35,FedEx Freight,Warehouse-A,2026-06-14,2026-06-19,2026-06-22,Delivered,Late delivery. Delayed by 3 days. Penalty applicable.
+PO-2026-010,SKU-671-9P,25,DHL Express,Warehouse-B,2026-06-23,2026-06-30,,In Transit,On schedule.

@@ -1,0 +1,27 @@
+RETAIL OPERATIONS STANDARD OPERATING PROCEDURE (SOP): VENDOR SLA & PROCUREMENT RULES
+Document ID: SOP-PROC-2026-V3
+Effective Date: January 1, 2026
+
+1. PURPOSE & CORE TIMELINES
+This document outlines the standard delivery, quality, and performance policies for all active suppliers and vendors providing goods to our distribution centers (Warehouse-A, Warehouse-B, and Warehouse-C).
+
+- Standard Lead Time: All purchase orders (POs) must be delivered within 7 business days from the PO release date, unless specifically overridden in the individual vendor agreement.
+- Rush Deliveries: Under critical low-stock scenarios, a 'RUSH' PO may be issued. Vendors are required to deliver RUSH orders within 2 business days. An additional 15% premium on unit cost is authorized for RUSH orders to cover expedited logistics.
+
+2. ON-TIME IN-FULL (OTIF) DELIVERY METRIC
+The core operational metric is OTIF (On-Time In-Full). 
+- 'On-Time' is defined as delivery within the designated 48-hour delivery window starting from the scheduled Delivery Date.
+- 'In-Full' is defined as receiving at least 98.5% of the total units ordered in the PO without damage.
+
+3. VENDOR PENALTIES & FEES FOR NON-COMPLIANCE
+Failure to meet the OTIF target triggers automatic financial penalties:
+- Late Delivery Fee: If a delivery is delayed beyond the 48-hour window without a 48-hour prior written warning, a penalty of 2.5% of the total PO value will be deducted for every day the shipment is late, up to a maximum cap of 15% of the PO value.
+- Short Shipment / Under-delivery Fee: If the received units fall below 98.5% of the ordered quantity, the vendor is assessed a 5% shortage penalty on the missing items' value, and the supplier must ship the remaining balance within 3 business days at their own expense.
+- Damaged Goods Return: Any goods received in damaged or unusable condition will be rejected at the loading dock. The supplier must replace the rejected items within 5 business days. A handling fee of $150 per pallet of rejected items will be charged to the vendor.
+
+4. SPECIFIC SUPPLIER CONTRACT AGREEMENTS
+- ScanTech Solutions (Barcodes/Scanners): SLA lead time is 5 business days. OTIF target is 99.0%. Penalty for late delivery is 3% of PO value per day. Contact: support@scantechsolutions.example.com
+- IronClad Products (Warehouse equipment): SLA lead time is 14 business days due to heavy freight. OTIF target is 95%. Late delivery penalty is 1% per day. Contact: orders@ironcladproducts.example.com
+- VoltBright Corp (Electrical): SLA lead time is 6 business days. OTIF target is 98%. Late penalty is 2% per day. Contact: sales@voltbrightcorp.example.com
+- PaperCo Ltd. (Warehouse supplies): SLA lead time is 3 business days. OTIF target is 99%. Late penalty is 5% per day due to high-velocity nature of paper receipts. Contact: logistics@papercoltd.example.com
+- TraceTags Inc. (RFID labels): SLA lead time is 4 business days. OTIF target is 99.5%. Late penalty is 4% per day. Contact: supply@tracetags.example.com

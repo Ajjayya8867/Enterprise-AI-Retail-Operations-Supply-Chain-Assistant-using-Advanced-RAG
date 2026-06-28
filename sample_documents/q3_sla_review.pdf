@@ -1,0 +1,59 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page
+   /Parent 2 0 R
+   /MediaBox [0 0 595 842]
+   /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> >> >>
+   /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 380 >>
+stream
+BT
+/F1 16 Tf
+72 750 Td
+(Nexus Retail Logistics: Q3 Carrier Performance Review) Tj
+0 -30 Td
+/F1 12 Tf
+(Document Ref: LPR-Q3-2026) Tj
+0 -30 Td
+(This report reviews the performance and SLA compliance of SwiftCargo and FedEx Freight.) Tj
+0 -20 Td
+(1. Carrier On-Time Performance Summary:) Tj
+0 -15 Td
+(- SwiftCargo achieved an On-Time Delivery rate of 94.2% across 340 shipments.) Tj
+0 -15 Td
+(- FedEx Freight achieved an On-Time Delivery rate of 88.5% across 210 shipments.) Tj
+0 -15 Td
+(- BlueStreak Logistics recorded 98.1% on-time performance on regional routes.) Tj
+0 -25 Td
+(2. Weather Delays & Hub Congestion:) Tj
+0 -15 Td
+(Major weather delays occurred at the Chicago transit hub, affecting FedEx deliveries.) Tj
+0 -15 Td
+(Average transit delay due to weather was 3.4 days in September 2026.) Tj
+0 -25 Td
+(3. Action Items and Carrier Penalty Charges:) Tj
+0 -15 Td
+(Apply standard 2.5% daily PO value late penalty on all delayed FedEx Freight shipments.) Tj
+ET
+endstream
+endobj
+xref
+0 5
+0000000000 65535 f
+0000000009 00000 n
+0000000058 00000 n
+0000000115 00000 n
+0000000282 00000 n
+trailer
+<< /Size 5 /Root 1 0 R >>
+startxref
+713
+%%EOF

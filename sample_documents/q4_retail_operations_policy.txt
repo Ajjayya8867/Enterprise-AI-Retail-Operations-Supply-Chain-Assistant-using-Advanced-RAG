@@ -1,0 +1,26 @@
+NEXUS RETAIL OPERATIONS POLICY MANUAL
+Document Code: OP-POLICY-Q4-2026
+Topic: Q4 Peak Season Inventory & Audit Protocols
+
+1. HOLIDAY PEAK SEASON TIMELINES
+The Q4 holiday peak season begins on November 1, 2026, and extends through January 5, 2027. 
+- During this window, standard receiving hours are extended to 24/7 operations at Warehouse-A and Warehouse-B.
+- Warehouse-C will maintain standard receiving (06:00 AM - 10:00 PM) but will run triple-shifts for order fulfillment.
+
+2. INVENTORY COUNT & PHYSICAL AUDIT SCHEDULE
+To maintain data accuracy, physical counting schedules are modified as follows during Q4:
+- Bi-Weekly Cycle Counts: Mandatory cycle counts must be performed every second Tuesday of the month for all "Category A" (High-Value / Tech) inventory items.
+- Next Full Physical Audit: The comprehensive end-of-year physical inventory audit is scheduled for December 28, 2026. All inbound receiving will be paused from 08:00 AM to 06:00 PM on that day.
+- Audit Coordinators: 
+  * Warehouse-A: Chief Auditor Elena Rostova
+  * Warehouse-B: Operations Manager Robert Chen
+  * Warehouse-C: Lead Coordinator Marcus Vance
+
+3. RETAIL HOLIDAY RETURN PROTOCOLS
+All customer returns received at physical retail stores during the holiday period must be consolidated and shipped back to Warehouse-B.
+- Return Inspection: Returns must be inspected within 48 hours of arrival at Warehouse-B.
+- Restocking Rules: Items in unopened packaging are to be restocked immediately with status "In Stock". Damaged or opened returns must be written off or sent to the liquidations bay.
+
+4. SAFETY & COMPLIANCE
+- Anti-Fatigue Aisle Mats (SKU-554-3M) must be placed in all packing stations at Warehouse-A and Warehouse-B.
+- Reflective Safety Vests (SKU-772-2Q) are mandatory for all employees, visitors, and truck drivers on receiving dock floors.

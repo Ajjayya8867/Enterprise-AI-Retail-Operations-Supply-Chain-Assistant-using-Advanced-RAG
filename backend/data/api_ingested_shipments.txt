@@ -1,0 +1,12 @@
+
+Shipment TRK-NEXUS-901 for PO PO-1002 via carrier SwiftCargo Express from Port of Los Angeles DC to Store 210 is Delayed. Notes: Severe customs queue at port entrance. Delivery SLA delayed by 3 days.
+Shipment TRK-NEXUS-902 for PO PO-1003 via carrier VoltRail Logistics from VoltBright Manufacturing Hub to Warehouse West is In Transit. Notes: On-schedule. Moving through midwest corridor.
+Shipment TRK-NEXUS-903 for PO PO-1004 via carrier FedEx Freight from ScanTech Corp Facility to Warehouse East is Delivered. Notes: Delivered on-time. Recieved by J. Doe.
+
+Shipment TRK-NEXUS-901 for PO PO-1002 via carrier SwiftCargo Express from Port of Los Angeles DC to Store 210 is Delayed. Notes: Severe customs queue at port entrance. Delivery SLA delayed by 3 days.
+Shipment TRK-NEXUS-902 for PO PO-1003 via carrier VoltRail Logistics from VoltBright Manufacturing Hub to Warehouse West is In Transit. Notes: On-schedule. Moving through midwest corridor.
+Shipment TRK-NEXUS-903 for PO PO-1004 via carrier FedEx Freight from ScanTech Corp Facility to Warehouse East is Delivered. Notes: Delivered on-time. Recieved by J. Doe.
+
+Shipment TRK-NEXUS-901 for PO PO-1002 via carrier SwiftCargo Express from Port of Los Angeles DC to Store 210 is Delayed. Notes: Severe customs queue at port entrance. Delivery SLA delayed by 3 days.
+Shipment TRK-NEXUS-902 for PO PO-1003 via carrier VoltRail Logistics from VoltBright Manufacturing Hub to Warehouse West is In Transit. Notes: On-schedule. Moving through midwest corridor.
+Shipment TRK-NEXUS-903 for PO PO-1004 via carrier FedEx Freight from ScanTech Corp Facility to Warehouse East is Delivered. Notes: Delivered on-time. Recieved by J. Doe.
